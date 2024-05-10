@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  mysqldb:
+    container_name: mysql-server-01
+    image: server01-mysql:1.1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'mysqlroot'
+    ports:
+    - '3306:3306'
+    expose:
+    - '3306'
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-uroot", "-pmysqlroot"]
+      interval: 10s
+      retries: 20
+    networks:
+    - apim-net
+
+  apim-node01:
+    container_name: wso2apim-node-01
+    image: node01-apim:1.1
+    ports:
+    - 9443:9443
+    - 8280:8280
+    - 5673:5673
+    - 9611:9611
+    - 9711:9711
+    - 8243:8243
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "9443"]
+      interval: 10s
+      start_period: 180s
+      retries: 20
+    depends_on:
+    - mysqldb
+    networks:
+    - apim-net
+
+  apim-node02:
+    container_name: wso2apim-node-02
+    image: node02-apim:1.1
+    ports:
+    - 9445:9445
+    - 8282:8282
+    - 5675:5675
+    - 9613:9613
+    - 9713:9713
+    - 8245:8245
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "9445"]
+      interval: 10s
+      start_period: 180s
+      retries: 20
+    depends_on:
+    - mysqldb
+    networks:
+    - apim-net
+
+networks:
+  apim-net:
+    external: true

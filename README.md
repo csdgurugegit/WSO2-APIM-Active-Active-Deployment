@@ -86,7 +86,7 @@ sudo systemctl status nginx
 
 #### Step 01: Build the Enviroment.
 
-Give execute permisson **chmod +x pre-build.sh** and run **Bash Script**.
+Give execute permisson **chmod +x docker-build.sh** and run **Bash Script**.
 
 ```bash
 sh docker-build.sh

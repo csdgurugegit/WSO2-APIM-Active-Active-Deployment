@@ -2,7 +2,7 @@
 
 In this deployment configuration, WSO2 API-M is set up in an Active-Active configuration within a single node environment. This architecture utilizes two WSO2 API Manager containers, effectively distributing the workload and ensuring redundancy for high availability. These containers work together smoothly and talk to a central MySQL server, which stores all the important data.
 
-![](https://github.com/csdgurugegit/projectimages/blob/main/WSO2-API-M-Active-Active-Deployment.jpg)
+![](https://github.com/chathuracsd/Project-Images/blob/main/WSO2-API-M-Active-Active-Deployment.jpg)
 
 ## Create a SSL Certificate
 
